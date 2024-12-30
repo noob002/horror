@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공포의 웹사이트</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e; /* 어두운 배경색 */
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 갑자기 나타날 텍스트 */
+        #scaryText {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            color: red;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        /* 화면 어두워지는 레이어 */
+        .darken {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+            pointer-events: none;
+        }
+
+        /* 이미지 효과 */
+        #scaryImage {
+            position: absolute;
+            top: 10%;
+            left: 20%;
+            width: 60%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            #scaryText {
+                font-size: 30px;
+            }
+
+            #scaryImage {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 화면 어두워지기 효과 -->
+    <div id="darkLayer" class="darken"></div>
+
+    <!-- 갑자기 나타날 공포 텍스트 -->
+    <div id="scaryText">당신을 보고 있다...</div>
+
+    <!-- 공포 이미지 -->
+    <img id="scaryImage" src="https://example.com/scary-image.jpg" alt="Scary Image">
+
+    <!-- 배경 음악 -->
+    <audio id="backgroundMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+
+    <script>
+        // 페이지 로드 시 배경 음악 자동 재생
+        document.body.addEventListener('click', function() {
+            const music = document.getElementById('backgroundMusic');
+            if (music.paused) {
+                music.play(); // 클릭 시 음악 시작
+            }
+        });
+
+        // 화면 어두워지기
+        function darkenScreen() {
+            const darkLayer = document.getElementById('darkLayer');
+            darkLayer.style.opacity = 1;
+        }
+
+        // 공포 텍스트 보여주기
+        function showScaryText() {
+            const scaryText = document.getElementById('scaryText');
+            scaryText.style.display = 'block';
+
+            // 2초 후 텍스트 숨기기
+            setTimeout(() => {
+                scaryText.style.display = 'none';
+            }, 2000);
+        }
+
+        // 공포 이미지 보여주기
+        function showScaryImage() {
+            const scaryImage = document.getElementById('scaryImage');
+            scaryImage.style.opacity = 1;
+
+            // 3초 후 이미지 숨기기
+            setTimeout(() => {
+                scaryImage.style.opacity = 0;
+            }, 3000);
+        }
+
+        // 5초 후 화면 어두워지기, 텍스트와 이미지 나타내기
+        setTimeout(() => {
+            darkenScreen();
+            showScaryText();
+            showScaryImage();
+        }, 5000);
+
+        // 10초 후 충격적인 소리 발생
+        setTimeout(() => {
+            const shockSound = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3");
+            shockSound.play(); // 충격적인 소리 재생
+        }, 10000);
+    </script>
+</body>
+</html>
