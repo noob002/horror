@@ -22,10 +22,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 5vw;
+            font-size: 8vw; /* 텍스트 크기를 뷰포트에 비례하여 조정 */
             color: red;
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
             text-align: center;
+            white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 설정 */
         }
 
         /* 화면 어두워지는 레이어 */
@@ -45,7 +46,8 @@
         #scaryImage {
             position: absolute;
             top: 10%;
-            left: 20%;
+            left: 50%;
+            transform: translateX(-50%); /* 이미지 중앙 정렬 */
             width: 60%;
             height: auto;
             opacity: 0;
@@ -55,7 +57,7 @@
         /* 반응형 */
         @media (max-width: 768px) {
             #scaryText {
-                font-size: 8vw;
+                font-size: 12vw; /* 모바일에서 텍스트 크기를 더 크게 조정 */
             }
 
             #scaryImage {
@@ -63,10 +65,10 @@
             }
         }
 
-        /* 미디어 쿼리로 화면 크기별 이미지 및 텍스트 크기 조정 */
+        /* 작은 화면에서 이미지와 텍스트 크기 조정 */
         @media (max-width: 480px) {
             #scaryText {
-                font-size: 10vw;
+                font-size: 14vw; /* 더 작은 화면에서는 텍스트 크기 키우기 */
             }
 
             #scaryImage {
@@ -90,12 +92,10 @@
     <audio id="backgroundMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
 
     <script>
-        // 페이지 로드 시 배경 음악 자동 재생
-        document.body.addEventListener('click', function() {
+        // 배경 음악 자동 재생: 페이지가 로드되면 자동으로 음악이 재생되도록 설정
+        window.addEventListener('load', function() {
             const music = document.getElementById('backgroundMusic');
-            if (music.paused) {
-                music.play(); // 클릭 시 음악 시작
-            }
+            music.play();
         });
 
         // 화면 어두워지기
