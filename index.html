@@ -22,7 +22,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 40px;
+            font-size: 5vw;
             color: red;
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
             text-align: center;
@@ -55,11 +55,22 @@
         /* 반응형 */
         @media (max-width: 768px) {
             #scaryText {
-                font-size: 30px;
+                font-size: 8vw;
             }
 
             #scaryImage {
                 width: 80%;
+            }
+        }
+
+        /* 미디어 쿼리로 화면 크기별 이미지 및 텍스트 크기 조정 */
+        @media (max-width: 480px) {
+            #scaryText {
+                font-size: 10vw;
+            }
+
+            #scaryImage {
+                width: 90%;
             }
         }
     </style>
@@ -73,7 +84,7 @@
     <div id="scaryText">당신을 보고 있다...</div>
 
     <!-- 공포 이미지 -->
-    <img id="scaryImage" src="https://example.com/scary-image.jpg" alt="Scary Image">
+    <img id="scaryImage" src="https://upload.wikimedia.org/wikipedia/commons/0/02/Scary_eyes.jpg" alt="Scary Image">
 
     <!-- 배경 음악 -->
     <audio id="backgroundMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
